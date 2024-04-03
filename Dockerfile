@@ -5,13 +5,15 @@ FROM ubuntu:20.04
 WORKDIR /app
 
 # Install necessary packages (including wget for downloading JDK)
-RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+    && apt-get install -y wget \
+    && rm -rf /var/lib/apt/lists/*
 
 # Download and install JDK 22
-RUN wget https://download.java.net/java/early_access/jdk22/9/GPL/openjdk-22_linux-x64_bin.tar.gz \
+RUN wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz \
     && tar -xzf openjdk-22_linux-x64_bin.tar.gz \
     && rm openjdk-22_linux-x64_bin.tar.gz \
-    && mv jdk-22 /opt/
+    && mv jdk-22.0.1 /opt/jdk-22
 
 # Set JAVA_HOME environment variable
 ENV JAVA_HOME /opt/jdk-22
