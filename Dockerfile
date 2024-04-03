@@ -22,7 +22,7 @@ ENV JAVA_HOME /opt/jdk-22
 ENV PATH $JAVA_HOME/bin:$PATH
 
 # Copy the packaged JAR file into the container
-COPY target/Tibu-0.0.1-SNAPSHOT.jar /app/
+COPY target/Tibu-0.0.1-SNAPSHOT.jar /app/Tibu-0.0.1-SNAPSHOT.jar
 
 # Expose the port your application listens on
 EXPOSE 8080
