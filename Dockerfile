@@ -2,7 +2,7 @@
 FROM maven:3.8.3-jdk-11 AS build
 WORKDIR /app
 COPY . .
-RUN mvn clean package -DskipTests
+RUN mvn clean package -DskipTests -Dmaven.compiler.release=22
 
 # Use a lightweight Alpine image for running the application
 FROM openjdk:17-alpine
