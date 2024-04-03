@@ -4,16 +4,16 @@ FROM ubuntu:20.04
 # Set the working directory in the container
 WORKDIR /app
 
-# Install necessary packages (including wget for downloading JDK and mlocate for locate command)
+# Install necessary packages (including wget for downloading JDK)
 RUN apt-get update \
-    && apt-get install -y wget mlocate \
+    && apt-get install -y wget \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and install JDK 22
 RUN wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz \
     && tar -xzf openjdk-22_linux-x64_bin.tar.gz \
     && rm openjdk-22_linux-x64_bin.tar.gz \
-    && mv $(locate libcurl.so) /opt/jdk-22
+    && find / -name "libcurl.so" 2>/dev/null | xargs -I{} mv {} /opt/jdk-22/lib/
 
 # Set JAVA_HOME environment variable
 ENV JAVA_HOME /opt/jdk-22
