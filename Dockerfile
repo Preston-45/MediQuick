@@ -13,7 +13,7 @@ RUN apt-get update \
 RUN wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz \
     && tar -xzf openjdk-22_linux-x64_bin.tar.gz \
     && rm openjdk-22_linux-x64_bin.tar.gz \
-    && mv $(find / -type d -name "jdk-*") /opt/jdk-22
+    && mv /jdk-* /opt/jdk-22
 
 # Set JAVA_HOME environment variable
 ENV JAVA_HOME /opt/jdk-22
