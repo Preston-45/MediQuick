@@ -30,5 +30,5 @@ COPY target/Tibu-0.0.1-SNAPSHOT.jar /app/
 # Expose the port your application listens on
 EXPOSE 8080
 
-# Run the JAR file with console logging
-CMD ["java", "-jar", "-Dspring.output.ansi.enabled=always", "-Dspring.profiles.active=docker", "Tibu-0.0.1-SNAPSHOT.jar"]
+# Run the JAR file with logging to console
+CMD ["sh", "-c", "java -jar Tibu-0.0.1-SNAPSHOT.jar >> /dev/stdout 2>&1"]
