@@ -1,8 +1,23 @@
 # Use a lightweight base image
-FROM adoptopenjdk/openjdk22:jdk-22.0.1_9-alpine-slim
+FROM ubuntu:20.04
 
 # Set the working directory in the container
 WORKDIR /app
+
+# Install necessary packages (including wget for downloading JDK)
+RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/*
+
+# Download and install JDK 22
+RUN wget https://download.java.net/java/early_access/jdk22/9/GPL/openjdk-22_linux-x64_bin.tar.gz \
+    && tar -xzf openjdk-22_linux-x64_bin.tar.gz \
+    && rm openjdk-22_linux-x64_bin.tar.gz \
+    && mv jdk-22 /opt/
+
+# Set JAVA_HOME environment variable
+ENV JAVA_HOME /opt/jdk-22
+
+# Update PATH to include JDK bin directory
+ENV PATH $JAVA_HOME/bin:$PATH
 
 # Copy the packaged JAR file into the container
 COPY target/Tibu.jar /app/
