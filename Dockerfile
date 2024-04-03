@@ -4,6 +4,9 @@ FROM ubuntu:20.04
 # Set the working directory in the container
 WORKDIR /app
 
+# Set noninteractive frontend
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Install necessary packages (including wget for downloading JDK)
 RUN apt-get update \
     && apt-get install -y wget \
